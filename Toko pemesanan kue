@@ -133,3 +133,14 @@ int main() {
     cin >> cNamaPengguna;
     cout << "Masukkan kata sandi: ";
     cin << cKataSandi;
+
+    do {
+        cout << "\nMenu" << endl;
+        cout << "1. Registrasi" << endl;
+        cout << "2. Login" << endl;
+        cout << "3. Lihat Katalog Kue" << endl;
+        cout << "4. Pesan Kue" << endl;
+        cout << "5. Tampilkan Struk" << endl;
+        cout << "6. Keluar" << endl;
+        cout << "Masukkan pilihan anda: ";
+        cin >> pilihan;
