@@ -101,3 +101,35 @@ void pesanKue() {
 
     cout << "Pesanan Berhasil Dibuat!" << endl;
 }
+
+void tampilkanStruk() {
+    cout << "Struk pembelian: " << endl;
+    for (const auto& p : pesanan) {
+        cout << "Kue: " << p.kue.nama << ", Rasa: " << p.rasa << ", Ukuran: " << p.ukuran << "' Total Harga: Rp" << p.totalHarga << endl;
+    }
+}
+
+int main() {
+    kue.push_back(Kue("Kue Coklat", "Rasa coklat yang lezat", 25000.0));
+    kue.push_back(Kue("Kue Vanila", "Rasa vanila creamy", 15000.0));
+    kue.push_back(Kue("Kue Stroberi", "Rasa stroberi yang segar", 20000.0));
+    kue.push_back(Kue("Kue Matcha", "Rasa matcha rumput", 22000.0));
+
+    int pilihan;
+    string namaPengguna, kataSandi;
+
+    Kue katalogKue[4] = {
+        Kue("Kue Coklat", "Rasa coklat yang lezat", 25000.0)),
+        Kue("Kue Vanila", "Rasa vanila creamy", 15000.0)),
+        Kue("Kue Stroberi", "Rasa stroberi segar", 20000.0)),
+        Kue("Kue Matcha", "Rasa matcha rumput", 22000.0))
+    };
+    Kue* ptrKue = &katalogKue[0];
+    cout << "Selamat Datang di Toko Hammer Bakery" << endl;
+
+    char cNamaPengguna[50];
+    char cKataSandi[50];
+    cout << "Masukkan nama pengguna: ";
+    cin >> cNamaPengguna;
+    cout << "Masukkan kata sandi: ";
+    cin << cKataSandi;
