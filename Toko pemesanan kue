@@ -99,7 +99,7 @@ void pesanKue() {
     cin >> ukuran;
 
     double totalHarga = kue[indeksKue].harga;
-    pesanan.push_back(Pesanan(kue[indeksKue], rasa, ukuran, totalHarga));
+    Pesanan pesananBaru(Pesanan(kue[indeksKue], rasa, ukuran, totalHarga));
     pesanan.push_back(pesananBaru);
     riwayatPesanan.push(pesananBaru);
     antreanPesanan.push(pesananBaru);
@@ -143,10 +143,10 @@ int main() {
     string namaPengguna, kataSandi;
 
     Kue katalogKue[4] = {
-        Kue("Kue Coklat", "Rasa coklat yang lezat", 25000.0)),
-        Kue("Kue Vanila", "Rasa vanila creamy", 15000.0)),
-        Kue("Kue Stroberi", "Rasa stroberi segar", 20000.0)),
-        Kue("Kue Matcha", "Rasa matcha rumput", 22000.0))
+        Kue("Kue Coklat", "Rasa coklat yang lezat", 25000.0),
+        Kue("Kue Vanila", "Rasa vanila creamy", 15000.0),
+        Kue("Kue Stroberi", "Rasa stroberi segar", 20000.0),
+        Kue("Kue Matcha", "Rasa matcha rumput", 22000.0)
     };
     Kue* ptrKue = &katalogKue[0];
     cout << "Selamat Datang di Toko Hammer Bakery" << endl;
@@ -156,7 +156,7 @@ int main() {
     cout << "Masukkan nama pengguna: ";
     cin >> cNamaPengguna;
     cout << "Masukkan kata sandi: ";
-    cin << cKataSandi;
+    cin >> cKataSandi;
 
     do {
         cout << "\nMenu" << endl;
@@ -201,7 +201,7 @@ int main() {
                 pesanKue();
                 break;
             case 5:
-                tampilkanStruck();
+                tampilkanStruk();
                 break;
             case 6:
                 tampilkanRiwayatPesanan();
