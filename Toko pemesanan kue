@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <stack>
+#include <queue>
+#include <algorithm>
+using namespace std;
+
+class Pengguna {
+private:
+    string namaPengguna;
+    string kataSandi;
+
+public:
+    Pengguna(string p, string k) : namaPengguna(p), kataSandi(k) {}
+
+    string getNamaPengguna() const {
+        return namaPengguna;
+    }
+    string getKataSandi() const {
+        return kataSandi;
+    }
+
+    void setNamaPengguna(const string& p) {
+        namaPengguna = p;
+    }
+    void setKataSandi(const string& k) {
+        kataSandi = k;
+    }
+};
+
+class Kue {
+public:
+    string nama;
+    string deskripsi;
+    double harga;
+
+    Kue(string n, string d, double h) : nama(n), deskripsi(d), harga(h) {}
+};
+
+class Pesanan {
+public:
+    Kue kue;
+    string rasa;
+    string ukuran;
+    double totalHarga;
+
+    Pesanan(Kue k, string r, string u, double th) : kue(k), rasa(r), ukuran(u), totalHarga(th) {}
+};
