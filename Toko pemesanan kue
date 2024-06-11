@@ -77,3 +77,27 @@ void tampilkanKue() {
         cout << i + 1 << ". " << kue[i].nama << ": " << kue[i].deskripsi << " - Rp" << kue[i].harga << endl;
     }
 }
+
+void pesanKue() {
+    tampilkanKue();
+    cout << "Pilih nomor kue: ";
+    int indeksKue;
+    cin >> indeksKue;
+    --indeksKue;
+
+    if (indeksKue < 0 || indeksKue >= kue.size()) {
+        cout << "Pilihan tidak valid" << endl;
+        return;
+    }
+
+    string rasa, ukuran;
+    cout << "Masukkan rasa: ";
+    cin >> rasa;
+    cout << "Masukkan ukuran(cm): ";
+    cin >> ukuran;
+
+    double totalHarga = kue[indeksKue].harga;
+    pesanan.push_back(Pesanan(kue[indeksKue], rasa, ukuran, totalHarga));
+
+    cout << "Pesanan Berhasil Dibuat!" << endl;
+}
