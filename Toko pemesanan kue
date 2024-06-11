@@ -47,3 +47,33 @@ public:
 
     Pesanan(Kue k, string r, string u, double th) : kue(k), rasa(r), ukuran(u), totalHarga(th) {}
 };
+
+vector<Pengguna> pengguna;
+vector<Kue> kue;
+vector<Pesanan> pesanan;
+
+bool registrasiPengguna(string namaPengguna, string kataSandi) {
+    for (const auto& p : pengguna) {
+        if (p.getNamaPengguna() == namaPengguna) {
+            return false;
+        }
+    }
+    pengguna.push_back(Pengguna(namaPengguna, kataSandi));
+    return true;
+}
+
+bool loginPengguna(string namaPengguna, string kataSandi) {
+    for (const auto& p : pengguna) {
+        if (p.getNamaPengguna() == namaPengguna && p.getKataSandi() == kataSandi) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void tampilkanKue() {
+    cout << "DAftar katalog kue yang tersedia: " << endl;
+    for (size_t i = 0; i < kue.size(); ++i) {
+        cout << i + 1 << ". " << kue[i].nama << ": " << kue[i].deskripsi << " - Rp" << kue[i].harga << endl;
+    }
+}
