@@ -51,6 +51,8 @@ public:
 vector<Pengguna> pengguna;
 vector<Kue> kue;
 vector<Pesanan> pesanan;
+stack<Pesanan> riwayatPesanan;
+queue<Pesanan> antreanPesanan;
 
 bool registrasiPengguna(string namaPengguna, string kataSandi) {
     for (const auto& p : pengguna) {
@@ -72,7 +74,7 @@ bool loginPengguna(string namaPengguna, string kataSandi) {
 }
 
 void tampilkanKue() {
-    cout << "DAftar katalog kue yang tersedia: " << endl;
+    cout << "Daftar katalog kue yang tersedia: " << endl;
     for (size_t i = 0; i < kue.size(); ++i) {
         cout << i + 1 << ". " << kue[i].nama << ": " << kue[i].deskripsi << " - Rp" << kue[i].harga << endl;
     }
@@ -98,6 +100,9 @@ void pesanKue() {
 
     double totalHarga = kue[indeksKue].harga;
     pesanan.push_back(Pesanan(kue[indeksKue], rasa, ukuran, totalHarga));
+    pesanan.push_back(pesananBaru);
+    riwayatPesanan.push(pesananBaru);
+    antreanPesanan.push(pesananBaru);
 
     cout << "Pesanan Berhasil Dibuat!" << endl;
 }
@@ -106,6 +111,25 @@ void tampilkanStruk() {
     cout << "Struk pembelian: " << endl;
     for (const auto& p : pesanan) {
         cout << "Kue: " << p.kue.nama << ", Rasa: " << p.rasa << ", Ukuran: " << p.ukuran << "' Total Harga: Rp" << p.totalHarga << endl;
+    }
+}
+void tampilkanRiwayatPesanan() {
+    cout << "Riwayat pesanan: " << endl;
+    stack<Pesanan> tempStack = riwayatPesanan;
+    while (!tempStack.empty()) {
+        Pesanan p = tempStack.top();
+        cout << "Kue: " << p.kue.nama << ", Rasa: " << p.rasa << ", Ukuran: " << p.ukuran << ", Total Harga: Rp" << p.totalHarga << endl;
+        tempStack.pop();
+    }
+}
+
+void tampilkanAntreanPesanan() {
+    cout << "Antrean pesanan: " << endl;
+    queue<Pesanan> tempQueue = antreanPesanan;
+    while (!tempQueue.empty()) {
+        Pesanan p = tempQueue.front();
+        cout << "Kue: " << p.kue.nama << ", Rasa: " << p.rasa << ", Ukuran: " << p.ukuran << ", Total Harga: Rp" << p.totalHarga << endl;
+        tempQueue.pop();
     }
 }
 
@@ -126,7 +150,7 @@ int main() {
     };
     Kue* ptrKue = &katalogKue[0];
     cout << "Selamat Datang di Toko Hammer Bakery" << endl;
-
+    
     char cNamaPengguna[50];
     char cKataSandi[50];
     cout << "Masukkan nama pengguna: ";
@@ -141,6 +165,57 @@ int main() {
         cout << "3. Lihat Katalog Kue" << endl;
         cout << "4. Pesan Kue" << endl;
         cout << "5. Tampilkan Struk" << endl;
-        cout << "6. Keluar" << endl;
+        cout << "6. Riwayat Pesanan" << endl;
+        cout << "7. Antrean Pesanan" << endl;
+        cout << "8. Keluar" << endl;
         cout << "Masukkan pilihan anda: ";
         cin >> pilihan;
+
+        switch (pilihan) {
+            case 1:
+                cout << "Masukkan nama pengguna: ";
+                cin >> namaPengguna;
+                cout << "Masukkan kata sandi: ";
+                cin >> kataSandi;
+                if (registrasiPengguna(namaPengguna, kataSandi)) {
+                     cout << "Registrasi berhasil!" << endl;
+                } else {
+                    cout << "Nama pengguna sudah ada!" << endl;
+                }
+                break;
+            case 2:
+                cout << "Masukkan nama pengguna: ";
+                cin >> namaPengguna;
+                cout << "Masukkan kata sandi: ";
+                cin >> kataSandi;
+                if (loginPengguna(namaPengguna, kataSandi)) {
+                    cout << "Login berhasil!" << endl;
+                } else {
+                    cout << "Nama pengguna atau kata sandi salah!" << endl;
+                }
+                break;
+            case 3:
+                tampilkanKue();
+                break;
+            case 4:
+                pesanKue();
+                break;
+            case 5:
+                tampilkanStruck();
+                break;
+            case 6:
+                tampilkanRiwayatPesanan();
+                break;
+            case 7:
+                tampilkanAntreanPesanan();
+                break;
+            case 8:
+                cout << "Keluar" << endl;
+                break;
+            default:
+                cout << "Pilihan anda tidak valid!" << endl;
+        }
+    } while (pilihan != 8);
+
+    return 0;
+}
